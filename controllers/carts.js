@@ -50,7 +50,27 @@ class CartsController {
   }
   static async update(req, res, next) {
     try {
-      res.status(200);
+      const UserId = 1; //req.user.id (authentikasi)
+
+      const { cartId } = req.params;
+      const { quantity } = req.body;
+
+      // cart validation
+      const cartFound = await Cart.findByPk(cartId);
+      if (!cartFound) {
+        return res.status(404).json({ message: "Cart not found" });
+      }
+
+      // new quantity validation
+      if (quantity < 1) {
+        return res.status(400).json({ message: "Add at least one item" });
+      }
+
+      // update cart
+      await Cart.update({ quantity }, { where: { id: cartId } });
+
+      const updatedCart = await Cart.findByPk(cartId);
+      res.status(200).json(updatedCart);
     } catch (error) {
       next(error);
     }
