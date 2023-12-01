@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const locations = require("./routes/locations");
 const menus = require("./routes/menus");
+const carts = require("./routes/carts");
 const errorHandler = require("./middleware/errorHandler");
 
 app.use(cors());
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/locations", locations);
 app.use("/menus", menus);
+app.use("/carts", carts);
 app.use(errorHandler);
 
 app.listen(port, () => {
