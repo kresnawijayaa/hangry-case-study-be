@@ -77,7 +77,22 @@ class CartsController {
   }
   static async delete(req, res, next) {
     try {
-      res.status(200);
+      const { cartId } = req.params;
+
+      // cart validation
+      const cartFound = await Cart.findByPk(cartId);
+      if (!cartFound) {
+        return res.status(404).json({ message: "Cart not found" });
+      }
+
+      // delete cart
+      await Cart.destroy({
+        where: { id: cartId },
+      });
+
+      res
+        .status(200)
+        .json({ message: `Cart item with id ${cartId} successfully deleted` });
     } catch (error) {
       next(error);
     }
