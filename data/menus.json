@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Nasi Goreng Spesial",
+    "price": "25000",
+    "image": "https://www.nasigoreng-spesial-image.com",
+    "description": "Nasi goreng spesial dengan campuran telur, ayam, udang, dan bumbu pilihan.",
+    "availability": true
+  },
+  {
+    "name": "Mie Goreng Seafood",
+    "price": "30000",
+    "image": "https://www.miegoreng-seafood-image.com",
+    "description": "Mie goreng dengan campuran seafood seperti cumi, udang, dan ikan, disajikan dengan saus pedas.",
+    "availability": false
+  },
+  {
+    "name": "Sate Ayam Madura",
+    "price": "18000",
+    "image": "https://www.sateayam-madura-image.com",
+    "description": "Sate ayam khas Madura dengan bumbu kacang dan kecap manis.",
+    "availability": true
+  },
+  {
+    "name": "Es Teh Manis",
+    "price": "8000",
+    "image": "https://www.esteh-manis-image.com",
+    "description": "Minuman es teh manis dengan tambahan es serut dan potongan jeruk.",
+    "availability": true
+  },
+  {
+    "name": "Soto Ayam Betawi",
+    "price": "28000",
+    "image": "https://www.sotoayam-betawi-image.com",
+    "description": "Soto ayam khas Betawi dengan kuah gurih, potongan ayam, bihun, dan bumbu rempah.",
+    "availability": true
+  },
+  {
+    "name": "Capuccino",
+    "price": "15000",
+    "image": "https://www.capuccino-image.com",
+    "description": "Minuman kopi capuccino dengan foam susu lembut di atasnya.",
+    "availability": true
+  },
+  {
+    "name": "Pizza Margherita",
+    "price": "35000",
+    "image": "https://www.pizza-margherita-image.com",
+    "description": "Pizza klasik dengan saus tomat, keju mozzarella, dan daun basil segar.",
+    "availability": true
+  },
+  {
+    "name": "Teh Tarik",
+    "price": "10000",
+    "image": "https://www.tehtarik-image.com",
+    "description": "Minuman teh tarik dengan busa kental, nikmat diseruput hangat.",
+    "availability": true
+  },
+  {
+    "name": "Bakso Malang",
+    "price": "22000",
+    "image": "https://www.bakso-malang-image.com",
+    "description": "Bakso Malang dengan kuah kaldu gurih, pangsit, dan mie.",
+    "availability": true
+  },
+  {
+    "name": "Jus Alpukat",
+    "price": "12000",
+    "image": "https://www.jusalpukat-image.com",
+    "description": "Jus alpukat segar dengan tambahan susu kental manis.",
+    "availability": false
+  }
+]
