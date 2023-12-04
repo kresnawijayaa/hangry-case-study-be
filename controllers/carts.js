@@ -1,9 +1,16 @@
-const { Cart, Location, Menu } = require("../models");
+const { Cart, Location, Menu, Order, OrderDetail } = require("../models");
 
 class CartsController {
   static async read(req, res, next) {
     try {
-      res.status(200);
+      const UserId = 1; //req.user.id (authentikasi)
+
+      const carts = await Cart.findAll({
+        where: { UserId },
+        include: [{ model: Menu }],
+      });
+
+      res.status(200).json(carts);
     } catch (error) {
       next(error);
     }
@@ -50,8 +57,6 @@ class CartsController {
   }
   static async update(req, res, next) {
     try {
-      const UserId = 1; //req.user.id (authentikasi)
-
       const { cartId } = req.params;
       const { quantity } = req.body;
 
@@ -94,6 +99,57 @@ class CartsController {
         .status(200)
         .json({ message: `Cart item with id ${cartId} successfully deleted` });
     } catch (error) {
+      next(error);
+    }
+  }
+  static async checkout(req, res, next) {
+    try {
+      const UserId = 1;
+
+      // find cart by user id
+      const cartItems = await Cart.findAll({
+        where: { UserId },
+        include: [{ model: Menu }],
+      });
+
+      console.log(cartItems, "<<<<<");
+
+      // validation cart
+      if (cartItems.length === 0) {
+        return res.status(400).json({ message: "Keranjang belanja kosong" });
+      }
+
+      // calculate total price
+      let totalPrice = 0;
+      for (const item of cartItems) {
+        totalPrice += item.quantity * item.Menu.price;
+      }
+
+      // create order history
+      const order = await Order.create({
+        UserId,
+        LocationId: cartItems[0].LocationId,
+        totalPrice,
+      });
+
+      // create order history details
+      for (const item of cartItems) {
+        await OrderDetail.create({
+          OrderId: order.id,
+          MenuId: item.MenuId,
+          quantity: item.quantity,
+        });
+      }
+
+      // delete cart
+      await Cart.destroy({ where: { UserId } });
+
+      res.status(200).json({
+        message: `Checkout berhasil, total belanja sebesar Rp ${totalPrice}`,
+        order,
+      });
+    } catch (error) {
+      console.error("Checkout failed: ", error);
       next(error);
     }
   }
